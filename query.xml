@@ -1,5 +1,5 @@
 <query type="way">
-  <around lat="1.3068055" lon="103.8188261" radius="1000"/>
+  <around lat="1.3068055" lon="103.8188261" radius="2000"/>
   <has-kv k="highway" regv="trunk|primary|secondary|living_street|residential|tertiary|motorway|trunk_link|primary_link|secondary_link|tertiary_link|motorway_link"/>
 </query>
 

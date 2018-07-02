@@ -16,6 +16,9 @@ gmap = gmplot.GoogleMapPlotter(1.3068055, 103.8188261, 40)
 top_attraction_lats, top_attraction_lons = zip(*coord_list)
 gmap.scatter(top_attraction_lats, top_attraction_lons, '#3B0B39', size=5, marker=False)
 
-# Draw
+# Heatmap
+gmap.heatmap(top_attraction_lats, top_attraction_lons)
+
+# Render
 gmap.draw("my_map.html")
 

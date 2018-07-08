@@ -1,4 +1,5 @@
 import overpy as op
+import sys
 from gmplot import gmplot
 
 class RoadPoint:
@@ -27,19 +28,20 @@ for way in ways:
 road_points = list(d.values())
 for rp in road_points:
     print(f'Lat: {rp.lat} Lon: {rp.lon} Road name: {rp.road_name}.', file=open("coordinates.txt", "a"))
-# Generate plot from points
-# coord_list = [(float(n.lat), float(n.lon)) for n in result.nodes]
+
+# Generate pure coordinates
+coord_list = [(float(rp.lat), float(rp.lon)) for rp in road_points]
 
 # This part has been left out, as there is no need to visualise.
-### gmap = gmplot.GoogleMapPlotter(1.3068055, 103.8188261, 15)
-### 
-### # Scatter points
-### top_attraction_lats, top_attraction_lons = zip(*coord_list)
-### gmap.scatter(top_attraction_lats, top_attraction_lons, '#3B0B39', size=5, marker=False)
-### 
-### # Heatmap
-### gmap.heatmap(top_attraction_lats, top_attraction_lons)
-### 
-### # Render
-### gmap.draw("my_map.html")
+gmap = gmplot.GoogleMapPlotter(1.3068055, 103.8188261, 15)
+
+# Scatter points
+top_attraction_lats, top_attraction_lons = zip(*coord_list)
+gmap.scatter(top_attraction_lats, top_attraction_lons, '#3B0B39', size=5, marker=False)
+
+# Heatmap
+gmap.heatmap(top_attraction_lats, top_attraction_lons)
+
+# Render
+gmap.draw("my_map.html")
 

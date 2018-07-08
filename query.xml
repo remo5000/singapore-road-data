@@ -1,12 +1,36 @@
-<query type="way">
-  <around lat="1.3068055" lon="103.8188261" radius="2000"/>
-  <has-kv k="highway" regv="trunk|primary|secondary|living_street|residential|tertiary|motorway|trunk_link|primary_link|secondary_link|tertiary_link|motorway_link"/>
-</query>
+  <!-- CENTRAL BOX -->
+  <query type="way">
+      <has-kv k="highway" regv="trunk|primary|secondary|living_street|residential|tertiary|motorway|trunk_link|primary_link|secondary_link|tertiary_link|motorway_link"/>
+    <bbox-query s="1.24247668" n="1.41821048" w="103.66199602" e="103.98677934"/>
+          <!-- <bbox-query s="1.33858265" n="1.37221887" w="103.72345079" e="103.78250231"/> -->
+  </query>
 
 <union>
-  <item/>
+  <!-- Including central box -->
+  <item />
   <recurse type="down"/>
-</union>
-
-<print/>
   
+  <!-- TUAS -->
+  <query type="way">
+      <around lat="1.26513055" lon="103.63590349" radius="8000"/>
+      <has-kv k="highway" regv="trunk|primary|secondary|living_street|residential|tertiary|motorway|trunk_link|primary_link|secondary_link|tertiary_link|motorway_link"/>
+  </query>
+  <recurse type="down"/>  
+  
+  <!-- NORTH / SEMBAWANG -->
+  <query type="way">
+      <around lat="1.41065968" lon="103.81443132" radius="5000"/>
+      <has-kv k="highway" regv="trunk|primary|secondary|living_street|residential|tertiary|motorway|trunk_link|primary_link|secondary_link|tertiary_link|motorway_link"/>
+  </query>
+  <recurse type="down"/> 
+  
+  <!-- CHANGI -->
+  <query type="way">
+      <around lat="1.31387004" lon="104.02935137" radius="5000"/>
+      <has-kv k="highway" regv="trunk|primary|secondary|living_street|residential|tertiary|motorway|trunk_link|primary_link|secondary_link|tertiary_link|motorway_link"/>
+  </query>
+  <recurse type="down"/> 
+  
+</union>
+<print/>
+

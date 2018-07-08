@@ -26,7 +26,7 @@ for way in ways:
         d[node.id] = rp
 road_points = list(d.values())
 for rp in road_points:
-    print(rp.road_name)
+    print(f'Lat: {rp.lat} Lon: {rp.lon} Road name: {rp.road_name}.', file=open("coordinates.txt", "a"))
 # Generate plot from points
 # coord_list = [(float(n.lat), float(n.lon)) for n in result.nodes]
 

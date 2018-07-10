@@ -1,15 +1,8 @@
 import overpy as op
 import sys
 from gmplot import gmplot
-
-class RoadPoint:
-    # lat:float lon:float roadname:string lane_count:int
-    def __init__(self, node_id, lat, lon, road_name, lane_count):
-        self.node_id = node_id
-        self.lat = lat
-        self.lon = lon
-        self.road_name = road_name
-        self.lane_count = lane_count
+from road_point import RoadPoint
+from output_text import export_road_points
 
 # Get API
 api = op.Overpass()
@@ -28,15 +21,13 @@ for way in ways:
         d[node.id] = rp
 
 road_points = list(d.values())
-# Clear file
-open("coordinates.txt", "w")
-for rp in road_points:
-    print(f'Lat: {rp.lat}, Lon: {rp.lon}, Road name: {rp.road_name}, Number of lanes: {rp.lane_count}', file=open("coordinates.txt", "a+"))
+
+export_road_points(road_points)
 
 # Generate pure coordinates
 coord_list = [(float(rp.lat), float(rp.lon)) for rp in road_points]
 
-# This part has been left out, as there is no need to visualise.
+# Setting up the canvas size for the map
 gmap = gmplot.GoogleMapPlotter(1.3068055, 103.8188261, 15)
 
 # Scatter points

@@ -4,6 +4,7 @@ import sys
 from road_point import RoadPoint
 from output_text import export_road_points
 from output_scatter import make_gmap
+from speed_limit_scraper import get_speed_limit
 
 # Get API
 api = op.Overpass()
@@ -18,7 +19,12 @@ ways = [w for w in all_ways if 'name' in w.tags and 'lanes' in w.tags]
 d = {}
 for way in ways:
     for node in way.nodes:
-        rp = RoadPoint(node.id, float(node.lat), float(node.lon), way.tags.get('name'), way.tags.get('lanes')) 
+        lat = float(node.lat)
+        lon = float(node.lon)
+        road_name = way.tags.get('name')
+        lane_count =  way.tags.get('lanes')
+        rp = RoadPoint(node.id, lat, lon, road_name,\
+            lane_count, get_speed_limit(road_name)) 
         d[node.id] = rp
 
 road_points = list(d.values())

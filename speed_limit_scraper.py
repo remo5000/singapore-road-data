@@ -1,4 +1,5 @@
 import requests
+from bs4 import BeautifulSoup
 
 # Returns speed limit of a given road name in string format.
 # Scrapes ONE.MOTORIN website
@@ -10,5 +11,8 @@ def get_speed_limit(road_name):
     response = requests.get(url)
     if response.status_code != 200:
         return '' 
-    text = response.text
-    print(html)
+    page = response.text
+    soup = BeautifulSoup(page, 'html.parser')
+    limit = soup.find('div', {"class": "gridtable"}).find('div', {"class": "row"}).find('div',  {"class": "cell cell30 textleft"}).find('p').contents[0]
+    print(limit)
+    return limit

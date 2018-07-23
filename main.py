@@ -1,6 +1,5 @@
 import overpy as op
 import sys
-# from multiprocessing import Pool
 from pathos.multiprocessing import ProcessingPool as Pool
 
 from road_point import RoadPoint

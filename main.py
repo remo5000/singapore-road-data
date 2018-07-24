@@ -49,7 +49,7 @@ unique_nodes = list(node_dict.values())
 road_points_without_speedlimit = [node_to_RoadPoint(n) for n in unique_nodes]
 
 executor = concurrent.futures.ThreadPoolExecutor()
-road_points = executor.map(append_speed_limit, road_points_without_speedlimit)
+road_points = list(executor.map(append_speed_limit, road_points_without_speedlimit))
 print("done processing all points!")
 export_road_points(road_points)
 kdtree = make_kdtree(road_points)

@@ -1,6 +1,7 @@
 import overpy as op
 import sys
-from pathos.multiprocessing import ProcessingPool as Pool
+# from pathos.multiprocessing import ProcessingPool as Pool
+import concurrent.futures
 
 from road_point import RoadPoint
 from output_text import export_road_points
@@ -47,12 +48,10 @@ for way in ways:
 unique_nodes = list(node_dict.values())
 road_points_without_speedlimit = [node_to_RoadPoint(n) for n in unique_nodes]
 
-# sys.setrecursionlimit(2000)
-with Pool(1) as p:
-    job = p.amap(append_speed_limit, road_points_without_speedlimit)
-    road_points = job.get()
-    print("done processing all points!")
-    export_road_points(road_points)
-    kdtree = make_kd_tree(road_points)
-    make_gmap(road_points)
+executor = concurrent.futures.ThreadPoolExecutor()
+road_points = executor.map(append_speed_limit, road_points_without_speedlimit)
+print("done processing all points!")
+export_road_points(road_points)
+kdtree = make_kdtree(road_points)
+make_gmap(road_points)
 

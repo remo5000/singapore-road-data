@@ -13,6 +13,7 @@ from speed_limit_scraper import get_speed_limit
 # Abstracted to enable concurrency for processing nodes.
 def append_speed_limit(road_point):
     road_point.speed_limit = get_speed_limit(road_point.road_name)
+    print('Fetched speed limit for node ' + str(road_point.node_id))
     return road_point
 
 # Converts a node to a RoadPoint, without speed_limit

@@ -14,5 +14,5 @@ def get_speed_limit(road_name):
     page = response.text
     soup = BeautifulSoup(page, 'html.parser')
     limit = soup.find('div', {"class": "gridtable"}).find('div', {"class": "row"}).find('div',  {"class": "cell cell30 textleft"}).find('p').contents[0]
-    print(limit)
+    print('Speed limit at ' + road_name + ': ' + limit)
     return limit

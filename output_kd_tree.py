@@ -1,12 +1,14 @@
 from pickle import dumps, loads
 from ast import literal_eval
 from scipy.spatial import cKDTree as KDtree
+import sys
 
 # Takes in an array of road points and 
 # Outputs pickled forms of 
 # 1) A kd-tree, with nodes as coordinates
 # 2) A dictionary, mapping coordinates (lat, lon) to RoadPoints 
 def make_kdtree(road_points):
+    sys.setrecursionlimit(50000)
     coords = []
     dictionary = {}
     for rp in road_points:

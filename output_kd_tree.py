@@ -25,10 +25,17 @@ def make_kdtree(road_points):
     print(dumped, file=open("coords_to_roadpoints.txt", "a+"))
     return tree  
 
-# Load a kd tree from kdtree.txt in the same directory.
+# Load a kd tree from kdtree.txt in the same directory, as kdtree
 def load_dumped_kdtree():
     dumped_file = open("kdtree.txt", "r")
     dumped = literal_eval(dumped_file.read())
     kdtree = loads(dumped)
     return kdtree
 
+# Loads a dumped dictionary from coords_to_roadpoints.txt in 
+# the same directory
+def load_dumped_dictionary():
+    dumped_file = open("coords_to_roadpoints.txt", "r")
+    dumped = literal_eval(dumped_file.read())
+    dictionary = loads(dumped)
+    return dictionary
